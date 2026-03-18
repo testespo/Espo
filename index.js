@@ -950,12 +950,17 @@ app.post("/api/profile/update-bio", verifyFirebaseToken, async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("ElitePros backend running");
+});
+
 /* ================= START ================= */
 
-app.listen(
-process.env.PORT||3000,
-()=>console.log("Server running securely")
-);
+const PORT = process.env.PORT;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("Server running on port", PORT);
+});
 
 /* ======================================================
 AUTH - RESOLVE IDENTIFIER (USERNAME / PHONE / EMAIL)
