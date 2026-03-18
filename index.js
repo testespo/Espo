@@ -160,7 +160,7 @@ console.log("ZAPUPI RAW RESPONSE:", rawResponse);
 /* ================= STORE RESPONSE ================= */
 
 await db.ref(`gatewayLogs/${orderId}`).set({
-  request: body.toString(),
+  request: params.toString(),
   timestamp: Date.now()
 });
 
