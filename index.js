@@ -1464,21 +1464,3 @@ res.status(500).json({error:"SERVER_ERROR"});
 app.get("/ping",(req,res)=>{
 res.send("alive");
 });
-
-
-app.get("/test-zapupi", async (req,res)=>{
-
-try{
-
-const r = await fetch("https://api.zapupi.com");
-
-res.json({status:r.status});
-
-}catch(e){
-
-console.log(e);
-res.json({error:"cannot reach zapupi"});
-
-}
-
-});
