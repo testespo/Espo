@@ -159,10 +159,9 @@ console.log("ZAPUPI RAW RESPONSE:", rawResponse);
 
 /* ================= STORE RESPONSE ================= */
 
-await db.ref("gatewayLogs/${orderId}").set({
-timestamp: Date.now(),
-request: params.toString(),
-response: rawResponse
+await db.ref(`gatewayLogs/${orderId}`).set({
+  request: body.toString(),
+  timestamp: Date.now()
 });
 
 /* ================= SAFE JSON PARSE ================= */
