@@ -160,7 +160,7 @@ console.log("ZAPUPI RAW RESPONSE:", rawResponse);
 /* ================= STORE RESPONSE ================= */
 
 await db.ref(`gatewayLogs/${orderId}`).set({
-  request: params.toString(),
+  request: body.toString(),
   timestamp: Date.now()
 });
 
@@ -192,17 +192,17 @@ gateway: zapupi
 
 /* ================= SAVE TRANSACTION ================= */
 
-await db.ref("users/${uid}/transactions/${orderId}").set({
-transactionId: orderId,
-type: "deposit",
-amount,
-status: "pending",
-timestamp: Date.now()
+await db.ref(`users/${uid}/transactions/${orderId}`).set({
+  transactionId: orderId,
+  type: "deposit",
+  amount,
+  status: "pending",
+  timestamp: Date.now()
 });
 
 /* ================= SAVE ORDER ================= */
 
-await db.ref("orders/${orderId}").set({
+await db.ref(`orders/${orderId}`).set({
 uid,
 amount,
 status:"pending",
