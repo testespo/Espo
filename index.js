@@ -1468,3 +1468,16 @@ res.status(500).json({error:"SERVER_ERROR"});
 app.get("/ping",(req,res)=>{
 res.send("alive");
 });
+
+app.get("/verify-token", async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split("Bearer ")[1];
+    if (!token) return res.status(401).json({ error: "No token" });
+
+    const decoded = await admin.auth().verifyIdToken(token);
+    res.json({ uid: decoded.uid });
+
+  } catch {
+    res.status(401).json({ error: "Invalid token" });
+  }
+});
